@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Viamyli - Gestion d'Établissement</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'sans': ['Space Grotesk', 'sans-serif'],
+                    },
+                    colors: {
+                        primary: '#ffffff',
+                        secondary: '#888888',
+                        background: '#111111',
+                        accent: '#2d2d2d',
+                        card: '#1a1a1a',
+                        tag: '#222222',
+                        'accent-orange': '#ff4d00',
+                    },
+                }
+            }
+        }
+    </script>
+</head>
+
+<body class="bg-background text-primary font-sans min-h-screen">
+    <!-- Navigation -->
+    <nav class="w-full bg-background/80 backdrop-blur border-b border-accent/10 shadow-sm px-4 py-2 flex items-center">
+        <a href="./index.html"
+            class="flex items-center gap-2 text-accent-orange hover:text-white font-medium text-base">
+            <i class="fas fa-arrow-left"></i>
+            <span>Retour</span>
+        </a>
+    </nav>
+
+    <main class="max-w-4xl mx-auto px-4 py-6">
+        <!-- En-tête du projet -->
+        <header class="mb-8">
+            <div class="rounded-2xl overflow-hidden shadow-lg mb-6">
+                <img src="https://placehold.co/1200x600/111/222" alt="Viamyli - Gestion d'Établissement"
+                    class="w-full h-64 sm:h-96 object-cover">
+            </div>
+
+            <div class="text-center mb-6">
+                <h1 class="text-3xl sm:text-4xl font-bold mb-2">VIAMYLI</h1>
+                <h2 class="text-2xl sm:text-3xl font-bold text-accent-orange mb-4">GESTION D'ÉTABLISSEMENT</h2>
+
+                <div class="flex flex-wrap gap-3 justify-center mb-4">
+                    <span class="px-3 py-1 bg-tag rounded-full text-xs text-secondary">Django</span>
+                    <span class="px-3 py-1 bg-tag rounded-full text-xs text-secondary">Python</span>
+                    <span class="px-3 py-1 bg-tag rounded-full text-xs text-secondary">PostgreSQL</span>
+                    <span class="px-3 py-1 bg-tag rounded-full text-xs text-secondary">HTML/CSS/JS</span>
+                </div>
+
+                <div class="flex flex-wrap justify-center gap-4 text-sm text-secondary mb-6">
+                    <div class="flex items-center gap-1">
+                        <i class="fas fa-calendar"></i>
+                        <span>2023</span>
+                    </div>
+                    <div class="flex items-center gap-1">
+                        <i class="fas fa-clock"></i>
+                        <span>3 mois</span>
+                    </div>
+                    <div class="flex items-center gap-1">
+                        <i class="fas fa-users"></i>
+                        <span>Équipe de 3</span>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Contenu principal -->
+        <div class="grid grid-cols-1 lg:grid-cols-4 gap-8">
+            <!-- Barre latérale -->
+            <aside class="lg:col-span-1 space-y-6">
+                <div class="bg-card/80 rounded-xl p-6 border border-accent/10">
+                    <h3 class="text-lg font-semibold mb-3 text-accent-orange">Technologies</h3>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1 bg-tag rounded-full text-xs">Django</span>
+                        <span class="px-3 py-1 bg-tag rounded-full text-xs">Python</span>
+                        <span class="px-3 py-1 bg-tag rounded-full text-xs">PostgreSQL</span>
+                        <span class="px-3 py-1 bg-tag rounded-full text-xs">HTML/CSS/JS</span>
+                    </div>
+                </div>
+
+                <div class="bg-card/80 rounded-xl p-6 border border-accent/10">
+                    <h3 class="text-lg font-semibold mb-3 text-accent-orange">Liens</h3>
+                    <div class="space-y-2">
+                        <a href="#" class="flex items-center gap-2 text-primary hover:text-accent-orange transition">
+                            <i class="fas fa-globe w-5"></i>
+                            <span>Site Web</span>
+                        </a>
+                        <a href="https://github.com/votre-repo/viamyli"
+                            class="flex items-center gap-2 text-primary hover:text-accent-orange transition">
+                            <i class="fab fa-github w-5"></i>
+                            <span>Code Source</span>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="bg-card/80 rounded-xl p-6 border border-accent/10">
+                    <h3 class="text-lg font-semibold mb-2 text-accent-orange">Client</h3>
+                    <p class="text-sm">Viamyli</p>
+                </div>
+            </aside>
+
+            <!-- Détails du projet -->
+            <div class="lg:col-span-3 space-y-8">
+                <!-- Contexte -->
+                <section class="bg-card/80 rounded-xl p-6 border border-accent/10">
+                    <h2 class="text-xl font-bold mb-4 text-accent-orange">🎯 Contexte</h2>
+                    <p class="text-secondary">
+                        Développement d'une application web complète pour la gestion d'établissement scolaire,
+                        visant à moderniser et optimiser les processus administratifs et pédagogiques.
+                        Le projet répond au besoin croissant de digitalisation des établissements scolaires.
+                    </p>
+                </section>
+
+                <!-- Défis -->
+                <section class="bg-card/80 rounded-xl p-6 border border-accent/10">
+                    <h2 class="text-xl font-bold mb-4 text-accent-orange">⚡ Défis Rencontrés</h2>
+                    <div class="space-y-4">
+                        <div>
+                            <h3 class="font-semibold">🧩 Architecture Complexe</h3>
+                            <p class="text-secondary text-sm">Gestion des différents niveaux d'accès et des rôles
+                                utilisateurs multiples.</p>
+                        </div>
+                        <div>
+                            <h3 class="font-semibold">🚀 Performance</h3>
+                            <p class="text-secondary text-sm">Optimisation des requêtes de base de données pour gérer un
+                                grand volume de données.</p>
+                        </div>
+                        <div>
+                            <h3 class="font-semibold">🎨 Interface Utilisateur</h3>
+                            <p class="text-secondary text-sm">Création d'une interface intuitive adaptée à différents
+                                types d'utilisateurs.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Solution -->
+                <section class="bg-card/80 rounded-xl p-6 border border-accent/10">
+                    <h2 class="text-xl font-bold mb-4 text-accent-orange">🛠️ Solution</h2>
+                    <p class="text-secondary mb-4">
+                        Implémentation d'une architecture Django robuste avec une séparation claire des responsabilités.
+                        Utilisation de PostgreSQL pour la gestion efficace des données et mise en place d'un système
+                        de cache pour optimiser les performances.
+                    </p>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-4">
+                        <img src="https://placehold.co/400x300/111/222" alt="Dashboard administrateur"
+                            class="rounded-lg border border-accent/10">
+                        <img src="https://placehold.co/400x300/111/222" alt="Interface de gestion"
+                            class="rounded-lg border border-accent/10">
+                    </div>
+                </section>
+
+                <!-- Résultats -->
+                <section class="bg-card/80 rounded-xl p-6 border border-accent/10">
+                    <h2 class="text-xl font-bold mb-4 text-accent-orange">🏆 Résultats</h2>
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                        <div class="bg-background p-4 rounded-lg text-center">
+                            <h3 class="font-bold text-accent-orange">⚡ Performance</h3>
+                            <p class="text-sm text-secondary">Temps de réponse < 500ms</p>
+                        </div>
+                        <div class="bg-background p-4 rounded-lg text-center">
+                            <h3 class="font-bold text-accent-orange">🔥 Adoption</h3>
+                            <p class="text-sm text-secondary">90% des utilisateurs actifs</p>
+                        </div>
+                        <div class="bg-background p-4 rounded-lg text-center">
+                            <h3 class="font-bold text-accent-orange">😊 Satisfaction</h3>
+                            <p class="text-sm text-secondary">Score utilisateur de 4.5/5</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Améliorations futures -->
+                <section class="bg-card/80 rounded-xl p-6 border border-accent/10">
+                    <h2 class="text-xl font-bold mb-4 text-accent-orange">🚀 Axes d'Amélioration</h2>
+                    <div class="space-y-3">
+                        <div class="flex items-start gap-3">
+                            <div class="text-accent-orange mt-1">
+                                <i class="fas fa-mobile-alt"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-semibold">Application Mobile</h3>
+                                <p class="text-secondary text-sm">Développement d'une version mobile native</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <div class="text-accent-orange mt-1">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-semibold">Analytics Avancés</h3>
+                                <p class="text-secondary text-sm">Ajout de tableaux de bord analytiques</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <div class="text-accent-orange mt-1">
+                                <i class="fas fa-cloud"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-semibold">Cloud Integration</h3>
+                                <p class="text-secondary text-sm">Migration vers une infrastructure cloud</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="mt-12 py-6 border-t border-accent/10">
+        <div class="max-w-4xl mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+                <p class="text-sm text-secondary">© 2024 - Tous droits réservés</p>
+                <div class="flex gap-6">
+                    <a href="index.html#home" class="text-secondary hover:text-accent-orange transition">Accueil</a>
+                    <a href="index.html#projects" class="text-secondary hover:text-accent-orange transition">Projets</a>
+                    <a href="index.html#experience"
+                        class="text-secondary hover:text-accent-orange transition">Expérience</a>
+                    <a href="index.html#contact" class="text-secondary hover:text-accent-orange transition">Contact</a>
+                </div>
+                <p class="text-sm text-secondary">Réalisé avec par <a href="index.html"
+                        class="text-accent-orange">Azertymj</a></p>
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>

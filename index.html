@@ -1,201 +1,612 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
+
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
-    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <title>Mon Portfolio - Version Tailwind</title>
+    <!-- <link rel="stylesheet" href="style.css"> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'sans': ['Space Grotesk', 'sans-serif'],
+                    },
+                    colors: {
+                        primary: '#ffffff',
+                        secondary: '#888888',
+                        background: '#111111',
+                        accent: '#2d2d2d',
+                        card: '#1a1a1a',
+                        tag: '#222222',
+                        'accent-orange': '#ff4d00',
+                    },
+                    animation: {
+                        'fade-in': 'fadeIn 0.6s ease-out forwards',
+                        'slide-up': 'slideUp 0.6s ease-out forwards',
+                        'slide-right': 'slideRight 0.6s ease-out forwards',
+                        'pulse-slow': 'pulse 6s infinite',
+                        'float': 'float 6s ease-in-out infinite',
+                        'bounce-slow': 'bounce 3s infinite',
+                        'fade-in-up': 'fadeInUp 0.6s ease-out forwards',
+                        'scale-in': 'scaleIn 0.5s ease-out forwards',
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' },
+                        },
+                        fadeInUp: {
+                            '0%': { opacity: '0', transform: 'translateY(20px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        },
+                        slideUp: {
+                            '0%': { transform: 'translateY(30px)', opacity: '0' },
+                            '100%': { transform: 'translateY(0)', opacity: '1' },
+                        },
+                        slideRight: {
+                            '0%': { transform: 'translateX(-30px)', opacity: '0' },
+                            '100%': { transform: 'translateX(0)', opacity: '1' },
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-10px)' },
+                        },
+                        scaleIn: {
+                            '0%': { transform: 'scale(0.95)', opacity: '0' },
+                            '100%': { transform: 'scale(1)', opacity: '1' },
+                        },
+                    },
+                }
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+        .animate-delay-100 { animation-delay: 100ms; }
+        .animate-delay-200 { animation-delay: 200ms; }
+        .animate-delay-300 { animation-delay: 300ms; }
+        
+        /* Styles spécifiques qui ne sont pas couverts par Tailwind */
+        .nav-hidden {
+          transform: translateY(-100%);
+        }
+        
+        .nav-visible {
+          transform: translateY(0);
+        }
+      }
+    </style>
 </head>
-<body>
-    <header class="header">
-        <a href="#" class="logo">AzertyMj</a>
 
-        <i class='bx bx-menu' id="menu-icon" ></i>
-
-        <nav class="navbar">
-            <a href="#home" class="active">Home</a>
-            <a href="#about">About</a>
-            <a href="#services">Service</a>
-            <a href="#portfolio">Portfolio</a>
-            <a href="#contact">Contact</a>
-           
-        </nav>
-    </header>
-
-    <section class="home" id="home">
-        <div class="home-content">
-            <h3>Hello, C'est Moi</h3>
-            <h1>Hendrix Marvin</h1>
-            <h3>Et Je Suis un <span class="multiple-text"></span></h3>
-            <p>Etudiant entrepreneur et dynamique qui a soif de connaissances et de culture</p>
-            <div class="social-media">
-                <a href="https://discord.com/invite/67yJ7bhy"><i class='bx bxl-discord-alt'></i></a>
-                <a href="https://github.com/azertymj"><i class='bx bxl-github'></i></a>
-                <a href="https://www.facebook.com/hendrixmarvin.mwouabo/"><i class='bx bxl-facebook-circle'></i></a>
-                <a href="https://www.linkedin.com/in/hendrix-mwouabo-704249304/"><i class='bx bxl-linkedin-square'></i></a> 
+<body class="bg-background text-primary font-sans min-h-screen">
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 w-full z-50 bg-background/80 backdrop-blur border-b border-accent/10 shadow-sm">
+        <div class="container mx-auto flex justify-center items-center px-4 py-3">
+            <div class="flex gap-3 md:gap-6">
+                <a href="#home"
+                    class="p-2 md:p-3 rounded-full hover:bg-accent-orange/10 hover:text-accent-orange transition-colors text-lg md:text-xl"
+                    aria-label="Accueil"><i class="fas fa-home"></i></a>
+                <a href="#projects"
+                    class="p-2 md:p-3 rounded-full hover:bg-accent-orange/10 hover:text-accent-orange transition-colors text-lg md:text-xl"
+                    aria-label="Projets"><i class="fas fa-folder"></i></a>
+                <a href="#experience"
+                    class="p-2 md:p-3 rounded-full hover:bg-accent-orange/10 hover:text-accent-orange transition-colors text-lg md:text-xl"
+                    aria-label="Expérience"><i class="fas fa-briefcase"></i></a>
+                <a href="#tools"
+                    class="p-2 md:p-3 rounded-full hover:bg-accent-orange/10 hover:text-accent-orange transition-colors text-lg md:text-xl"
+                    aria-label="Outils"><i class="fas fa-tools"></i></a>
+                <a href="#contact"
+                    class="p-2 md:p-3 rounded-full hover:bg-accent-orange/10 hover:text-accent-orange transition-colors text-lg md:text-xl"
+                    aria-label="Contact"><i class="fas fa-envelope"></i></a>
             </div>
-            <a href="#" class="btn" onclick="downloadDocument()">Download CV</a>
-
         </div>
-        <div class="home-img">
-            <img src="Images/moi1_filter_-removebg.png" alt="">
-        </div>
-    </section>
+    </nav>
 
-    <section class="about" id="about">
-        <div class="about-img">
-            <img src="Images/moi1_filter_-removebg.png" alt="">
-        </div>
-
-        <div class="about-content">
-            <h2 class="heading">A Propos De <span>Moi</span></h2>
-            <h3>Developper!</h3>
-            <p>Je suis passionné de programmation.
-                 J'aime travailler sur des projets informatiques et apprendre de nouvelles compétences dans ce domaine en constante évolution. En dehors de mon travail,
-                  j'aime regarder et jouer au basketball. Je suis un grand fan de la NBA et je suis fasciné par la façon dont les joueurs professionnels excellent dans leur domaine.
-                   J'aime aussi me cultiver en lisant des livres sur l'histoire de la technologie et en suivant les dernières tendances dans le domaine.
-                    J'aime apprendre de nouvelles choses et je suis toujours à la recherche de nouvelles opportunités pour élargir mes connaissances et compétences.</p>
-                <!--<a href="#" class="btn">Lire Plus</a>-->
-                
-        </div>
-    </section>
-
-    <section class="services" id="services">
-        <h2 class="heading">Our <span>Services</span></h2>
-
-        <div class="services-container">
-            <div class="services-box">
-                <i class='bx bxs-paint'></i>
-                <h3>FrontEnd designer</h3>
-                <p>En cours d'apprentissage, reproduction de maquette html</p>
-                <!--<a href="#" class="btn">Lire Plus</a>-->
+    <main class="pt-20 pb-8 px-2 sm:px-4 max-w-5xl mx-auto">
+        <!-- HERO SECTION-->
+        <section id="home" class="flex flex-col md:flex-row items-center gap-4 md:gap-8 py-3 sm:py-6">
+            <div class="flex-shrink-0 flex flex-col items-center md:items-start w-full md:w-1/3">
+                <img src="https://placehold.co/180x180/ff4d00/000000" alt="Photo de profil"
+                    class="w-36 h-36 rounded-full border-4 border-accent-orange/30 shadow-lg mb-4">
+                <h1 class="text-2xl sm:text-3xl font-bold text-center md:text-left mb-1">Hendrix Marvin Mwouabo</h1>
+                <p class="text-secondary text-center md:text-left text-base mb-4">Développeur passionné par la création
+                    d'expériences numériques innovantes</p>
+                <a href="assets/cv.pdf" target="_blank" download
+                    class="inline-flex items-center gap-2 bg-accent-orange text-white px-5 py-2 rounded-lg font-medium shadow hover:bg-accent-orange/90 transition-colors">
+                    <i class="fas fa-download"></i> Télécharger mon CV
+                </a>
             </div>
+            <div class="flex-1 flex flex-col items-center md:items-start">
+                <h2
+                    class="text-4xl sm:text-5xl md:text-6xl font-extrabold mb-2 text-center md:text-left tracking-tight">
+                    <span class="block">SOFTWARE</span>
+                    <span class="text-accent-orange">ENGINEER</span>
+                </h2>
+                <p class="text-lg text-secondary mb-6 max-w-xl text-center md:text-left">
+                    Passionné par la création d'expériences utilisateur intuitives et engageantes. Spécialisé dans la
+                    transformation d'idées en produits magnifiquement conçus.
+                </p>
+                <div class="flex flex-wrap gap-2 mb-4 justify-center md:justify-start">
+                    <span class="px-3 py-1 bg-tag rounded-full text-sm font-medium">ANIMATION DYNAMIQUE</span>
+                    <span class="px-3 py-1 bg-tag rounded-full text-sm font-medium">MOTION DESIGN</span>
+                    <span class="px-3 py-1 bg-tag rounded-full text-sm font-medium">DÉVELOPPEMENT WEB</span>
+                </div>
+                <div class="flex flex-wrap gap-2 mb-6 justify-center md:justify-start">
+                    <span class="px-3 py-1 bg-tag/70 rounded-full text-xs">Laravel</span>
+                    <span class="px-3 py-1 bg-tag/70 rounded-full text-xs">FIGMA</span>
+                    <span class="px-3 py-1 bg-tag/70 rounded-full text-xs">DJango</span>
+                    <span class="px-3 py-1 bg-tag/70 rounded-full text-xs">Git</span>
+                    <span class="px-3 py-1 bg-tag/70 rounded-full text-xs">MySQL</span>
+                    <span class="px-3 py-1 bg-tag/70 rounded-full text-xs">PHP</span>
+                    <span class="px-3 py-1 bg-tag/70 rounded-full text-xs">Fullstack</span>
+                    <span class="px-3 py-1 bg-tag/70 rounded-full text-xs">Kotlin</span>
+                    <span class="px-3 py-1 bg-tag/70 rounded-full text-xs">Python</span>
+                    <span class="px-3 py-1 bg-tag/70 rounded-full text-xs">Java</span>
+                </div>
+                <div class="flex gap-6 mt-4 justify-center md:justify-start">
+                    <div class="flex flex-col items-center">
+                        <span class="text-3xl font-bold text-accent-orange">+4</span>
+                        <span class="text-xs text-secondary text-center">ANNÉES<br>D'EXPÉRIENCE</span>
+                    </div>
+                    <div class="flex flex-col items-center">
+                        <span class="text-3xl font-bold text-accent-orange">+10</span>
+                        <span class="text-xs text-secondary text-center">PROJETS<br>RÉALISÉS</span>
+                    </div>
+                    <div class="flex flex-col items-center">
+                        <span class="text-sm text-secondary">+3</span>
+                        <span class="text-xs text-secondary text-center">CLIENTS<br>INTERNATIONAUX</span>
+                    </div>
+                </div>
 
-            <div class="services-box">
-                <i class='bx bx-code-alt'></i>
-                <h3>Conseiller</h3>
-                <p>Fournie des conseille sur comment entretenir
-                     votre machine et reseau</p>
-                <!--<a href="#" class="btn">Lire Plus</a>-->
+                <!-- Indicateur de défilement fixe en bas à droite -->
+                <div id="scrollIndicator" class="fixed bottom-8 right-8 z-40 transition-opacity duration-500">
+                    <button id="scrollToNextSection"
+                        class="flex items-center justify-center text-accent-orange hover:text-white transition-colors focus:outline-none">
+                        <!-- Version bureau -->
+                        <div class="hidden md:flex items-center group">
+                            <div
+                                class="w-12 h-12 rounded-full bg-background/80 border-2 border-accent-orange/50 flex items-center justify-center backdrop-blur-sm transition-all duration-300 group-hover:bg-accent-orange/10 group-hover:border-accent-orange/80">
+                                <i class="fas fa-chevron-down text-xl animate-bounce"></i>
+                            </div>
+                            <span
+                                class="ml-2 text-sm text-accent-orange opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap">
+                                Voir les projets
+                            </span>
+                        </div>
+                        <!-- Version mobile -->
+                        <div
+                            class="md:hidden flex items-center justify-center w-12 h-12 rounded-full bg-accent-orange/20 hover:bg-accent-orange/30 transition-colors">
+                            <i class="fas fa-chevron-down text-xl animate-bounce"></i>
+                        </div>
+                    </button>
+                </div>
+
+                <style>
+                    @keyframes scroll {
+                        0% {
+                            transform: translateY(0);
+                            opacity: 1;
+                        }
+
+                        50% {
+                            transform: translateY(10px);
+                            opacity: 0.7;
+                        }
+
+                        100% {
+                            transform: translateY(0);
+                            opacity: 1;
+                        }
+                    }
+
+                    .animate-scroll {
+                        animation: scroll 2s infinite ease-in-out;
+                    }
+
+                    #scrollIndicator {
+                        opacity: 1;
+                        transition: opacity 1s ease-in-out;
+                    }
+
+                    #scrollIndicator.hidden {
+                        opacity: 0;
+                        pointer-events: none;
+                    }
+                </style>
             </div>
+        </section>
 
-            <div class="services-box">
-                <i class='bx bx-code-alt'></i>
-                <h3>Web Development</h3>
-                <p>En cours d'apprentissage</p>
-                <!--<a href="#" class="btn">Lire Plus</a>-->
+        <!-- EXPERIENCE SECTION (full Tailwind, responsive) -->
+        <section id="experience" class="py-3 sm:py-6">
+            <div class="mb-4 sm:mb-6 text-center">
+                <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold mb-1">EXPÉRIENCE</h2>
+                <h3 class="text-xl sm:text-2xl text-accent-orange font-bold">4 ANS D'EXPÉRIENCE</h3>
             </div>
-            <div class="services-box">
-                <i class='bx bx-code-alt'></i>
-                <h3>Maintenancier</h3>
-                <p>Reparation probleme software and hardware</p>
-                <!--<a href="#" class="btn">Lire Plus</a>-->
-            </div>
-
-        </div> 
-    </section>
-    
-     <section class="portfolio" id="portfolio">
-        <h2 class="heading">Recent<span> Project</span></h2>
-
-        <div class="portfolio-container">
-            <div class="portfolio-box">
-                <img src="Images/game 2d.png" alt="">
-                <div class="portfolio-layer">   
-                    <h4>2D Game</h4>
-                    <p>Jeu de parcours en 2D dans lequel le joueur incarne un personnage qui
-                         doit traverser plusieurs niveaux remplis de défis et d'obstacles.</p>
-                        <a href=""><i class='bx bx-link-external'></i></a>
+            <div class="grid gap-4 sm:gap-6 grid-cols-1 md:grid-cols-3">
+                <!-- Expérience 1 -->
+                <div class="bg-card/80 rounded-2xl shadow-lg border border-accent/10 p-6 flex flex-col gap-2">
+                    <div class="flex items-center gap-3 mb-2">
+                        <span class="text-2xl text-accent-orange"><i class="fas fa-briefcase"></i></span>
+                        <span class="font-semibold text-lg">Développeur Full Stack</span>
+                    </div>
+                    <span class="text-xs text-accent-orange mb-1">2021 - Présent</span>
+                    <p class="text-secondary text-sm">Développement d'applications web et mobiles avec des technologies
+                        modernes comme React, Node.js et Python.</p>
+                </div>
+                <!-- Expérience 2 -->
+                <div class="bg-card/80 rounded-2xl shadow-lg border border-accent/10 p-6 flex flex-col gap-2">
+                    <div class="flex items-center gap-3 mb-2">
+                        <span class="text-2xl text-accent-orange"><i class="fas fa-laptop-code"></i></span>
+                        <span class="font-semibold text-lg">Développeur Frontend</span>
+                    </div>
+                    <span class="text-xs text-accent-orange mb-1">2019 - 2021</span>
+                    <p class="text-secondary text-sm">Création d'interfaces utilisateur réactives et accessibles avec
+                        React et Vue.js.</p>
+                </div>
+                <!-- Expérience 3 -->
+                <div class="bg-card/80 rounded-2xl shadow-lg border border-accent/10 p-6 flex flex-col gap-2">
+                    <div class="flex items-center gap-3 mb-2">
+                        <span class="text-2xl text-accent-orange"><i class="fas fa-graduation-cap"></i></span>
+                        <span class="font-semibold text-lg">Formation</span>
+                    </div>
+                    <span class="text-xs text-accent-orange mb-1">2017 - 2019</span>
+                    <p class="text-secondary text-sm">Diplôme en Développement Web et Applications Mobiles.</p>
                 </div>
             </div>
+        </section>
 
-            <div class="portfolio-box">
-                <img src="Images/frontend developer.jpg" alt="">
-                <div class="portfolio-layer">   
-                    <h4>frontend developer</h4>
-                    <p>Header, Formulaire, Page de connexion, Bulletin def note</p>
-                        <a href=""><i class='bx bx-link-external'></i></a>
+        <!-- PROJECTS SECTION (full Tailwind, responsive, animé) -->
+        <section id="projects" class="py-3 sm:py-6">
+            <div class="mb-4 sm:mb-6 text-center">
+                <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold mb-1">PROJETS</h2>
+                <h3 class="text-xl sm:text-2xl text-accent-orange font-bold">RÉCENTS</h3>
+            </div>
+            <div class="grid gap-4 sm:gap-6 grid-cols-1 md:grid-cols-2">
+                <!-- Project 1 -->
+                <div
+                    class="bg-card/80 rounded-2xl shadow-lg border border-accent/10 hover:border-accent-orange/50 transition-all duration-300 p-6 flex flex-col gap-3 group">
+                    <div class="flex items-center gap-4 mb-2">
+                        <span class="text-2xl text-accent-orange"><i class="fas fa-mobile-alt"></i></span>
+                        <span class="font-semibold text-lg">KNetworking - Services à Domicile</span>
+                    </div>
+                    <p class="text-secondary text-sm mb-2">Application mobile de mise en relation pour services à
+                        domicile</p>
+                    <div class="flex gap-3 mt-auto">
+                        <a href="knetworking-project.html"
+                            class="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-accent-orange/10 text-accent-orange hover:bg-accent-orange hover:text-white transition font-medium text-xs"><i
+                                class="fas fa-globe"></i> Voir</a>
+                        <a href="#"
+                            class="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-accent-orange/10 text-accent-orange hover:bg-accent-orange hover:text-white transition font-medium text-xs"><i
+                                class="fas fa-code"></i> Code</a>
+                        <a href="#"
+                            class="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-accent-orange/10 text-accent-orange hover:bg-accent-orange hover:text-white transition font-medium text-xs"><i
+                                class="fas fa-eye"></i> Preview</a>
+                    </div>
+                </div>
+                <!-- Project 2 -->
+                <div
+                    class="bg-card/80 rounded-2xl shadow-lg border border-accent/10 hover:border-accent-orange/50 transition-all duration-300 p-6 flex flex-col gap-3 group">
+                    <div class="flex items-center gap-4 mb-2">
+                        <span class="text-2xl text-accent-orange"><i class="fas fa-globe"></i></span>
+                        <span class="font-semibold text-lg">ViaMyLi - Plateforme de Voyage</span>
+                    </div>
+                    <p class="text-secondary text-sm mb-2">Plateforme de réservation de voyages en ligne</p>
+                    <div class="flex gap-3 mt-auto">
+                        <a href="viamyli-project.html"
+                            class="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-accent-orange/10 text-accent-orange hover:bg-accent-orange hover:text-white transition font-medium text-xs"><i
+                                class="fas fa-globe"></i> Voir</a>
+                        <a href="#"
+                            class="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-accent-orange/10 text-accent-orange hover:bg-accent-orange hover:text-white transition font-medium text-xs"><i
+                                class="fas fa-code"></i> Code</a>
+                        <a href="#"
+                            class="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-accent-orange/10 text-accent-orange hover:bg-accent-orange hover:text-white transition font-medium text-xs"><i
+                                class="fas fa-eye"></i> Preview</a>
+                    </div>
                 </div>
             </div>
+        </section>
 
-            <div class="portfolio-box">
-                <img src="Images/mobile developer.jpg" alt="">
-                <div class="portfolio-layer">   
-                    <h4>Mobil developer</h4>
-                    <p>jeux 2d</p>
-                        <a href=""><i class='bx bx-link-external'></i></a>
+        <!-- OUTILS SECTION (full Tailwind, responsive) -->
+        <section id="tools" class="py-3 sm:py-6">
+            <div class="mb-4 sm:mb-6 text-center">
+                <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold mb-1">OUTILS</h2>
+                <h3 class="text-xl sm:text-2xl text-accent-orange font-bold">PREMIUM</h3>
+            </div>
+            <div class="grid gap-4 sm:gap-6 grid-cols-2 sm:grid-cols-3 md:grid-cols-4 max-w-4xl mx-auto">
+                <div
+                    class="bg-card/80 rounded-2xl shadow-lg border border-accent/10 p-6 flex flex-col items-center gap-2">
+                    <span class="text-4xl text-accent-orange mb-2"><i class="fab fa-figma"></i></span>
+                    <span class="font-semibold text-lg">Figma</span>
+                    <span class="text-secondary text-xs text-center">Design d'interface et prototypage</span>
+                </div>
+                <div
+                    class="bg-card/80 rounded-2xl shadow-lg border border-accent/10 p-6 flex flex-col items-center gap-2">
+                    <span class="text-4xl text-accent-orange mb-2"><i class="fab fa-git-alt"></i></span>
+                    <span class="font-semibold text-lg">Git</span>
+                    <span class="text-secondary text-xs text-center">Gestion de versions</span>
+                </div>
+                <div
+                    class="bg-card/80 rounded-2xl shadow-lg border border-accent/10 p-6 flex flex-col items-center gap-2">
+                    <span class="text-4xl text-accent-orange mb-2"><i class="fas fa-terminal"></i></span>
+                    <span class="font-semibold text-lg">VS Code</span>
+                    <span class="text-secondary text-xs text-center">Éditeur de code</span>
+                </div>
+                <div
+                    class="bg-card/80 rounded-2xl shadow-lg border border-accent/10 p-6 flex flex-col items-center gap-2">
+                    <span class="text-4xl text-accent-orange mb-2"><i class="fas fa-server"></i></span>
+                    <span class="font-semibold text-lg">Docker</span>
+                    <span class="text-secondary text-xs text-center">Conteneurisation</span>
                 </div>
             </div>
+        </section>
 
-            <div class="portfolio-box">
-                <img src="Images/Mechant.PNG" alt="">
-                <div class="portfolio-layer">   
-                    <h4>Conseiller</h4>
-                    <p>Fournie des conseille sur comment entretenir votre machine et reseau</p>
-                        <a href=""><i class='bx bx-link-external'></i></a>
+        <!-- CONTACT SECTION (full Tailwind, responsive) -->
+        <section id="contact" class="py-3 sm:py-6">
+            <div class="mb-4 sm:mb-6 text-center">
+                <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold mb-1">TRAVAILLONS</h2>
+                <h3 class="text-xl sm:text-2xl text-accent-orange font-bold">ENSEMBLE</h3>
+            </div>
+            <form
+                class="max-w-2xl mx-auto bg-card/80 rounded-2xl shadow-lg border border-accent/10 p-6 flex flex-col gap-4"
+                action="#" method="POST">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <input type="text" name="name" placeholder="Votre nom" required
+                        class="bg-background/80 border border-accent/10 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-accent-orange/50 focus:border-transparent text-sm">
+                    <input type="email" name="email" placeholder="Votre email" required
+                        class="bg-background/80 border border-accent/10 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-accent-orange/50 focus:border-transparent text-sm">
+                </div>
+                <input type="text" name="subject" placeholder="Objet" required
+                    class="bg-background/80 border border-accent/10 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-accent-orange/50 focus:border-transparent text-sm">
+                <textarea name="message" rows="5" placeholder="Votre message" required
+                    class="bg-background/80 border border-accent/10 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-accent-orange/50 focus:border-transparent text-sm"></textarea>
+                <button type="submit"
+                    class="w-full md:w-auto bg-accent-orange hover:bg-accent-orange/90 text-white font-medium py-3 px-8 rounded-lg transition-colors duration-300 flex items-center justify-center gap-2">
+                    <span>Envoyer le message</span>
+                    <i class="fas fa-paper-plane"></i>
+                </button>
+            </form>
+        </section>
+
+        <!-- FOOTER (full Tailwind, responsive) -->
+        <footer class="mt-4 py-2 border-t border-accent/10 text-center text-secondary text-sm">
+            <div
+                class="flex flex-col md:flex-row justify-center md:justify-between items-center gap-2 max-w-4xl mx-auto px-4">
+                <div>© 2024 - Tous droits réservés</div>
+                <div class="flex flex-wrap gap-4 justify-center">
+                    <a href="#home" class="hover:text-accent-orange transition">Accueil</a>
+                    <a href="#projects" class="hover:text-accent-orange transition">Projets</a>
+                    <a href="#experience" class="hover:text-accent-orange transition">Expérience</a>
+                    <a href="#tools" class="hover:text-accent-orange transition">Outils</a>
+                    <a href="#contact" class="hover:text-accent-orange transition">Contact</a>
                 </div>
             </div>
-
-            <div class="portfolio-box">
-                <img src="Images/Mechant.PNG" alt="">
-                <div class="portfolio-layer">   
-                    <h4>Web Design</h4>
-                    <p>reproduction de maquette html</p>
-                        <a href=""><i class='bx bx-link-external'></i></a>
-                </div>
-            </div>
-
-            <div class="portfolio-box">
-                <img src="Images/Mechant.PNG" alt="">
-                <div class="portfolio-layer">   
-                    <h4>Maintenancier</h4>
-                    <p>Reparation probleme software and hardware</p>
-                        <a href=""><i class='bx bx-link-external'></i></a>
-                </div>
-            </div>
+        </footer>
+        </div>
+        <!-- Notification -->
+        <div id="notification"
+            class="fixed bottom-6 right-6 bg-green-500 text-white px-6 py-3 rounded-lg shadow-lg transform translate-y-4 opacity-0 transition-all duration-300 flex items-center space-x-2">
+            <i class="fas fa-check-circle"></i>
+            <span>Message envoyé avec succès !</span>
         </div>
 
-    </section> 
+        <style>
+            /* Correction pour assurer que les sections sont visibles */
+            section {
+                padding: 2rem 0;
+            }
 
-    <!-- <section class="contact" id="contact">-->
-    <!--    <h2 class="heading">Contact <span>Me!</span></h2>-->
+            /* Ajustements pour les petits écrans */
+            @media (max-width: 640px) {
+                .profile-card {
+                    margin-bottom: 2rem;
+                    position: relative;
+                    width: 100%;
+                }
 
-    <!--    <form action="#">-->
-    <!--        <div class="input-box">-->
-    <!--            <input type="text" name="" id="" placeholder="Full name">-->
-    <!--            <input type="email" name="" id="" placeholder="Email">-->
-    <!--        </div>-->
-    <!--        <div class="input-box">-->
-    <!--            <input type="number" name="" id="" placeholder="mobile Number">-->
-    <!--            <input type="text" name="" id="" placeholder="Email Subject">-->
-    <!--        </div>-->
-    <!--        <textarea name="" id="" cols="30" rows="10" placeholder="Your Message"></textarea>-->
-    <!--        <input type="submit" value="Send Message" class="btn">-->
-    <!--    </form>-->
-    <!--</section> -->
+                .fixed-sidebar {
+                    position: relative;
+                    width: 100%;
+                    margin-bottom: 2rem;
+                }
 
-    <footer class="footer">
-        <div class="footer-text">
-            <p>Copyright &copy; 2023 by Azertymj | All Rights Reserved.</p>
-        </div>
+                .main-container {
+                    flex-direction: column;
+                }
 
-        <div class="footer-iconTop">
-            <a href="#home"><i class='bx bx-up-arrow-alt'></i></a>
-        </div>
-    </footer>
+                .scrollable-content {
+                    width: 100%;
+                    margin-left: 0;
+                }
+            }
+        </style>
 
-    <script src="https://unpkg.com/scrollreveal"></script>
+        <script>
+            // Animation au chargement de la page
+            document.addEventListener('DOMContentLoaded', () => {
+                // Forcer l'affichage des sections
+                document.querySelectorAll('section').forEach(section => {
+                    section.style.opacity = '1';
+                    section.style.visibility = 'visible';
+                });
+                // Animation des éléments au défilement
+                const animateOnScroll = () => {
+                    const elements = document.querySelectorAll('[data-animate]');
+                    const windowHeight = window.innerHeight;
 
-    <script src="https://unpkg.com/typed.js@2.0.15/dist/typed.umd.js"></script>
+                    elements.forEach((element) => {
+                        const elementTop = element.getBoundingClientRect().top;
+                        const elementVisible = 150;
 
-    
-    
-    
-    
-    <script src="script.js"></script>
+                        if (elementTop < windowHeight - elementVisible) {
+                            const animation = element.getAttribute('data-animate');
+                            if (animation && !element.classList.contains('animated')) {
+                                element.style.animation = `${animation} 0.6s ease-out forwards`;
+                                element.classList.add('animated');
+                            }
+                        }
+                    });
+                };
 
+                // Démarrer les animations visibles au chargement
+                animateOnScroll();
+
+                // Animer les éléments au défilement
+                window.addEventListener('scroll', animateOnScroll);
+
+                // Animation du bouton de téléchargement du CV
+                const downloadBtn = document.querySelector('.download-cv');
+                if (downloadBtn) {
+                    downloadBtn.addEventListener('mouseenter', () => {
+                        downloadBtn.classList.add('animate-pulse');
+                    });
+                    downloadBtn.addEventListener('mouseleave', () => {
+                        downloadBtn.classList.remove('animate-pulse');
+                    });
+                }
+
+                // Gestion de l'indicateur de défilement
+                const scrollIndicator = document.getElementById('scrollIndicator');
+                let scrollTimeout;
+
+                function resetTimer() {
+                    // Réafficher l'indicateur
+                    if (scrollIndicator) {
+                        scrollIndicator.classList.remove('hidden');
+                        // Effacer le timeout précédent s'il existe
+                        clearTimeout(scrollTimeout);
+                        // Démarrer un nouveau compte à rebours
+                        scrollTimeout = setTimeout(() => {
+                            scrollIndicator.classList.add('hidden');
+                        }, 5000); // 5 secondes
+                    }
+                }
+
+                // Démarrer le timer initial
+                if (scrollIndicator) {
+                    resetTimer();
+
+                    // Réinitialiser le timer lors du défilement ou du survol
+                    window.addEventListener('scroll', resetTimer);
+                    scrollIndicator.addEventListener('mouseenter', () => {
+                        scrollIndicator.classList.remove('hidden');
+                        clearTimeout(scrollTimeout);
+                    });
+                    scrollIndicator.addEventListener('mouseleave', resetTimer);
+                }
+            });
+
+            // Gestion du menu de navigation
+            let lastScroll = 0;
+            const nav = document.querySelector('nav'); // Utilisation de querySelector au lieu de getElementById
+
+            if (nav) { // Vérification de l'existence de l'élément nav
+                window.addEventListener('scroll', () => {
+                    const currentScroll = window.pageYOffset;
+
+                    if (currentScroll <= 0) {
+                        nav.classList.remove('nav-hidden');
+                        nav.classList.add('nav-visible');
+                        return;
+                    }
+
+                    if (currentScroll > lastScroll && !nav.classList.contains('nav-hidden')) {
+                        // Scroll vers le bas
+                        nav.classList.remove('nav-visible');
+                        nav.classList.add('nav-hidden');
+                    } else if (currentScroll < lastScroll && nav.classList.contains('nav-hidden')) {
+                        // Scroll vers le haut
+                        nav.classList.remove('nav-hidden');
+                        nav.classList.add('nav-visible');
+                    }
+
+                    lastScroll = currentScroll;
+                });
+            }
+
+            // Animation des cartes de projet au défilement
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animate-slide-up');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            // Observer les cartes de projet
+            document.querySelectorAll('.project-card').forEach((card, index) => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                card.style.animationDelay = `${index * 100}ms`;
+                observer.observe(card);
+            });
+
+            // Fonction pour faire défiler vers la section suivante
+            function scrollToNextSection() {
+                const sections = document.querySelectorAll('section');
+                const currentScroll = window.scrollY + (window.innerHeight / 3);
+                let currentSectionIndex = -1;
+
+                // Trouver la section actuellement visible
+                sections.forEach((section, index) => {
+                    const sectionTop = section.offsetTop;
+                    const sectionBottom = sectionTop + section.offsetHeight;
+
+                    if (currentScroll >= sectionTop && currentScroll < sectionBottom) {
+                        currentSectionIndex = index;
+                    }
+                });
+
+                // Calculer la prochaine section
+                let nextSectionIndex = currentSectionIndex + 1;
+                if (nextSectionIndex >= sections.length) {
+                    nextSectionIndex = 0; // Revenir au début si on est à la dernière section
+                }
+
+                // Faire défiler vers la section suivante
+                const nextSection = sections[nextSectionIndex];
+                if (nextSection) {
+                    window.scrollTo({
+                        top: nextSection.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            }
+
+            // Gestion du clic sur le bouton de défilement
+            const scrollButton = document.getElementById('scrollToNextSection');
+            if (scrollButton) {
+                scrollButton.addEventListener('click', scrollToNextSection);
+            }
+
+            // Navigation fluide pour les liens de menu
+            document.querySelectorAll('nav a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        </script>
 </body>
+
 </html>
