@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mon Portfolio - Version Tailwind</title>
-    <link rel="icon" type="image/png"  href="assets/Moi.jpg">
+    <link rel="icon" type="image/png" href="assets/Moi.jpg">
     <!-- <link rel="stylesheet" href="style.css"> -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;800&display=swap"
@@ -322,7 +322,8 @@
             </div>
             <div class="grid gap-4 sm:gap-6 grid-cols-1 md:grid-cols-3">
                 <!-- Expérience 1 -->
-                <div class="bg-card/80 rounded-2xl shadow-lg border border-accent/10 p-6 flex flex-col gap-2 card-hover">
+                <div
+                    class="bg-card/80 rounded-2xl shadow-lg border border-accent/10 p-6 flex flex-col gap-2 card-hover">
                     <div class="flex items-center gap-3 mb-2">
                         <span class="text-2xl text-accent-orange"><i class="fas fa-briefcase"></i></span>
                         <span class="font-semibold text-lg">Développeur Full Stack</span>
@@ -332,7 +333,8 @@
                         modernes PHP, Python.</p>
                 </div>
                 <!-- Expérience 2 -->
-                <div class="bg-card/80 rounded-2xl shadow-lg border border-accent/10 p-6 flex flex-col gap-2 card-hover">
+                <div
+                    class="bg-card/80 rounded-2xl shadow-lg border border-accent/10 p-6 flex flex-col gap-2 card-hover">
                     <div class="flex items-center gap-3 mb-2">
                         <span class="text-2xl text-accent-orange"><i class="fas fa-laptop-code"></i></span>
                         <span class="font-semibold text-lg">Développeur Frontend</span>
@@ -342,7 +344,8 @@
                         Bootstrap et Flutter.</p>
                 </div>
                 <!-- Expérience 3 -->
-                <div class="bg-card/80 rounded-2xl shadow-lg border border-accent/10 p-6 flex flex-col gap-2 card-hover">
+                <div
+                    class="bg-card/80 rounded-2xl shadow-lg border border-accent/10 p-6 flex flex-col gap-2 card-hover">
                     <div class="flex items-center gap-3 mb-2">
                         <span class="text-2xl text-accent-orange"><i class="fas fa-graduation-cap"></i></span>
                         <span class="font-semibold text-lg">Formation</span>
@@ -447,10 +450,9 @@
                 <h3 class="text-xl sm:text-2xl text-accent-orange font-bold">ENSEMBLE</h3>
             </div>
             <!-- Remplacer le formulaire existant par celui-ci -->
-            <form id="contact-form" 
+            <form id="contact-form"
                 class="max-w-2xl mx-auto bg-card/80 rounded-2xl shadow-lg border border-accent/10 p-6 flex flex-col gap-4"
-                action="https://formspree.io/f/mqaqovkb" 
-                method="POST">
+                action="https://formspree.io/f/mqaqovkb" method="POST">
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <input type="text" name="name" placeholder="Votre nom" required
                         class="bg-background/80 border border-accent/10 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-accent-orange/50 focus:border-transparent text-sm">
@@ -492,8 +494,10 @@
         </div>
 
         <!-- Toast Notification -->
-        <div id="toast" class="fixed bottom-4 right-4 transform translate-y-full opacity-0 transition-all duration-300 z-50">
-            <div class="bg-accent-orange/90 text-white px-6 py-3 rounded-lg shadow-lg backdrop-blur-sm flex items-center gap-2">
+        <div id="toast"
+            class="fixed bottom-4 right-4 transform translate-y-full opacity-0 transition-all duration-300 z-50">
+            <div
+                class="bg-accent-orange/90 text-white px-6 py-3 rounded-lg shadow-lg backdrop-blur-sm flex items-center gap-2">
                 <i class="fas fa-check-circle"></i>
                 <span>Message envoyé avec succès !</span>
             </div>
@@ -711,43 +715,89 @@
                 });
             });
 
-            // Remplacer le script de gestion du formulaire par celui-ci
-            document.getElementById('contact-form').addEventListener('submit', function(event) {
-                event.preventDefault();
+            // Gestion du formulaire avec soumission AJAX et pas de redirection
+            document.getElementById('contact-form').addEventListener('submit', function (event) {
+                event.preventDefault(); // Empêcher la soumission normale
+
                 const form = event.target;
+                const submitButton = form.querySelector('button');
                 const formData = new FormData(form);
 
-                form.querySelector('button').disabled = true;
+                // Validation simple avant soumission
+                const name = form.querySelector('input[name="name"]').value.trim();
+                const email = form.querySelector('input[name="email"]').value.trim();
+                const subject = form.querySelector('input[name="subject"]').value.trim();
+                const message = form.querySelector('textarea[name="message"]').value.trim();
 
+                if (!name || !email || !subject || !message) {
+                    showToast('Veuillez remplir tous les champs', 'error');
+                    return;
+                }
+
+                // Validation email
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailRegex.test(email)) {
+                    showToast('Veuillez entrer une adresse email valide', 'error');
+                    return;
+                }
+
+                // Désactiver le bouton et montrer l'envoi
+                submitButton.disabled = true;
+                submitButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Envoi en cours...';
+
+                // Envoyer via AJAX avec un header spécial pour éviter reCAPTCHA
                 fetch(form.action, {
                     method: 'POST',
                     body: formData,
                     headers: {
-                        'Accept': 'application/json'
+                        'Accept': 'application/json',
+                        'X-Requested-With': 'XMLHttpRequest'
                     }
                 })
-                .then(response => {
-                    if (response.ok) {
-                        form.reset();
-                        showToast('Message envoyé avec succès !', 'success');
-                    } else {
-                        throw new Error('Erreur lors de l\'envoi');
-                    }
-                })
-                .catch(error => {
-                    showToast('Une erreur est survenue', 'error');
-                })
-                .finally(() => {
-                    form.querySelector('button').disabled = false;
-                });
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.ok || data.success) {
+                            form.reset();
+                            showToast('Message envoyé avec succès !', 'success');
+                        } else {
+                            throw new Error(data.error || 'Erreur lors de l\'envoi');
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Erreur:', error);
+                        showToast('Une erreur est survenue. Veuillez réessayer.', 'error');
+                    })
+                    .finally(() => {
+                        submitButton.disabled = false;
+                        submitButton.innerHTML = '<span>Envoyer le message</span><i class="fas fa-paper-plane"></i>';
+                    });
             });
 
-            function showToast(message, type) {
+            function showToast(message, type = 'success') {
                 const toast = document.getElementById('toast');
-                toast.querySelector('span').textContent = message;
+                const toastDiv = toast.querySelector('div');
+                const icon = toast.querySelector('i');
+                const text = toast.querySelector('span');
+
+                // Mettre à jour le contenu
+                text.textContent = message;
+
+                // Réinitialiser les classes
+                toastDiv.className = 'px-6 py-3 rounded-lg shadow-lg backdrop-blur-sm flex items-center gap-2';
+
+                // Appliquer le style selon le type
+                if (type === 'error') {
+                    toastDiv.classList.add('bg-red-500/90', 'text-white');
+                    icon.className = 'fas fa-exclamation-circle';
+                } else {
+                    toastDiv.classList.add('bg-accent-orange/90', 'text-white');
+                    icon.className = 'fas fa-check-circle';
+                }
+
+                // Afficher le toast
                 toast.classList.remove('translate-y-full', 'opacity-0');
                 toast.classList.add('translate-y-0', 'opacity-100');
-                
+
                 setTimeout(() => {
                     toast.classList.add('translate-y-full', 'opacity-0');
                     toast.classList.remove('translate-y-0', 'opacity-100');
