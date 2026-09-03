@@ -1,0 +1,327 @@
+/* ============================================================
+   Portfolio — shared styles (index + project pages)
+   Loaded after Tailwind CDN. Keep selectors independent from
+   Tailwind's generated utilities so this survives config drift.
+   ============================================================ */
+
+/* ---------- theme tokens ----------
+   Defined as "R G B" triplets so Tailwind's `/opacity` modifiers
+   (bg-card/80, border-accent/10, ...) keep working — the tailwind.config
+   in each page maps colors to rgb(var(--color-x-rgb) / <alpha-value>).
+   Dark is the default brand look; [data-theme="light"] overrides it. */
+:root {
+    --accent-orange: #ff4d00;
+    --color-primary-rgb: 255 255 255;
+    --color-secondary-rgb: 148 148 148;
+    --color-background-rgb: 17 17 17;
+    --color-accent-rgb: 45 45 45;
+    --color-card-rgb: 26 26 26;
+    --color-tag-rgb: 34 34 34;
+    --color-accent-orange-rgb: 255 77 0;
+}
+
+:root[data-theme="light"] {
+    --color-primary-rgb: 23 23 23;
+    --color-secondary-rgb: 90 98 108;
+    --color-background-rgb: 250 250 249;
+    --color-accent-rgb: 205 205 205;
+    --color-card-rgb: 255 255 255;
+    --color-tag-rgb: 236 236 234;
+}
+
+body {
+    background-color: rgb(var(--color-background-rgb));
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+#theme-toggle i {
+    transition: transform 0.4s ease;
+}
+#theme-toggle:active i {
+    transform: rotate(25deg) scale(0.9);
+}
+
+* {
+    scrollbar-width: thin;
+    scrollbar-color: var(--accent-orange) rgb(var(--color-background-rgb));
+}
+
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: rgb(var(--color-background-rgb));
+}
+
+::-webkit-scrollbar-thumb {
+    background: #ff4d00;
+    border-radius: 999px;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    overflow-x: hidden;
+}
+
+/* ---------- keyframes ---------- */
+@keyframes fadeInUp {
+    0% { opacity: 0; transform: translateY(24px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes floatY {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+@keyframes spinSlow {
+    to { transform: rotate(360deg); }
+}
+
+@keyframes pulseGlow {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(255, 77, 0, 0.35); }
+    50% { box-shadow: 0 0 0 10px rgba(255, 77, 0, 0); }
+}
+
+@keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* ---------- reveal on scroll ---------- */
+[data-reveal] {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+    transition-delay: var(--reveal-delay, 0ms);
+}
+
+[data-reveal].is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    [data-reveal] {
+        opacity: 1;
+        transform: none;
+        transition: none;
+    }
+    .float-anim,
+    .spin-slow {
+        animation: none !important;
+    }
+}
+
+.float-anim {
+    animation: floatY 6s ease-in-out infinite;
+}
+
+.spin-slow {
+    animation: spinSlow 18s linear infinite;
+}
+
+/* ---------- text gradient ---------- */
+.text-gradient {
+    background: linear-gradient(90deg, #ff4d00, #ff9d00, #ff4d00);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: gradientShift 6s ease infinite;
+}
+
+/* ---------- buttons / interactions ---------- */
+.hover-scale { transition: transform 0.3s ease; }
+.hover-scale:hover { transform: scale(1.05); }
+
+.hover-lift { transition: transform 0.3s ease; }
+.hover-lift:hover { transform: translateY(-2px); }
+
+.hover-glow { transition: box-shadow 0.3s ease; }
+.hover-glow:hover { box-shadow: 0 0 15px rgba(255, 77, 0, 0.35); }
+
+.ripple { position: relative; overflow: hidden; }
+.ripple::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, transparent 60%);
+    opacity: 0;
+    transform: scale(2);
+    transition: opacity 0.5s, transform 0.5s;
+}
+.ripple:hover::after { opacity: 1; transform: scale(1); }
+
+/* ---------- card hover (mouse-tracked glow) ---------- */
+.card-hover {
+    position: relative;
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.4s ease;
+    will-change: transform;
+}
+
+.card-hover::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: radial-gradient(600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(255, 77, 0, 0.12), transparent 40%);
+    opacity: 0;
+    transition: opacity 0.4s;
+    z-index: 2;
+    pointer-events: none;
+}
+.card-hover:hover::before { opacity: 1; }
+
+/* ---------- 3D tilt (JS-driven) ---------- */
+.tilt {
+    transform-style: preserve-3d;
+    perspective: 1000px;
+    transition: transform 0.15s ease-out, box-shadow 0.3s ease;
+    will-change: transform;
+}
+.tilt:hover {
+    box-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 77, 0, 0.15);
+}
+.tilt-inner {
+    transform: translateZ(30px);
+}
+
+/* ---------- browser-chrome mockup (project banners) ---------- */
+.browser-chrome {
+    background: #1a1a1a;
+    border-radius: 0.75rem 0.75rem 0 0;
+    border: 1px solid rgba(255,255,255,0.06);
+    border-bottom: none;
+    padding: 0.6rem 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+}
+.browser-chrome .dot { width: 10px; height: 10px; border-radius: 999px; }
+.browser-chrome .bar {
+    flex: 1;
+    background: #111111;
+    border-radius: 999px;
+    padding: 0.25rem 0.75rem;
+    font-size: 0.7rem;
+    color: #888888;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* ---------- timeline ---------- */
+.timeline {
+    position: relative;
+}
+.timeline::before {
+    content: '';
+    position: absolute;
+    left: 18px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: linear-gradient(to bottom, rgba(255,77,0,0.6), rgba(255,77,0,0.05));
+}
+@media (min-width: 768px) {
+    .timeline::before { left: 50%; margin-left: -1px; }
+}
+.timeline-item {
+    position: relative;
+    padding-left: 3rem;
+}
+@media (min-width: 768px) {
+    .timeline-item { padding-left: 0; width: 50%; }
+    .timeline-item.left { margin-left: 0; padding-right: 3rem; text-align: right; }
+    .timeline-item.right { margin-left: 50%; padding-left: 3rem; }
+}
+.timeline-dot {
+    position: absolute;
+    left: 10px;
+    top: 0.4rem;
+    width: 18px;
+    height: 18px;
+    border-radius: 999px;
+    background: #ff4d00;
+    box-shadow: 0 0 0 4px rgba(255,77,0,0.15);
+    z-index: 2;
+}
+@media (min-width: 768px) {
+    .timeline-item.left .timeline-dot { left: auto; right: -9px; }
+    .timeline-item.right .timeline-dot { left: -9px; }
+}
+
+/* ---------- filter buttons ---------- */
+.filter-btn {
+    transition: all 0.25s ease;
+}
+.filter-btn[data-active="true"] {
+    background: var(--accent-orange);
+    color: #ffffff;
+}
+
+/* ---------- back to top ---------- */
+#backToTop {
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(12px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+#backToTop.visible {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+}
+
+/* ---------- mobile nav sheet ---------- */
+#mobileMenu {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.35s ease;
+}
+#mobileMenu.open {
+    max-height: 24rem;
+}
+
+/* ---------- hero 3D canvas ---------- */
+#hero-3d {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+}
+#hero-3d canvas {
+    width: 100% !important;
+    height: 100% !important;
+}
+
+/* ---------- misc ---------- */
+.badge-live {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+}
+.badge-live .dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 999px;
+    background: #22c55e;
+    box-shadow: 0 0 0 0 rgba(34,197,94,0.6);
+    animation: pulseDotGreen 2s infinite;
+}
+@keyframes pulseDotGreen {
+    0% { box-shadow: 0 0 0 0 rgba(34,197,94,0.5); }
+    70% { box-shadow: 0 0 0 6px rgba(34,197,94,0); }
+    100% { box-shadow: 0 0 0 0 rgba(34,197,94,0); }
+}
+
+@media (max-width: 640px) {
+    section { padding: 1.5rem 0; }
+}

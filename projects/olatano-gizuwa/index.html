@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <script>(function(){try{if(localStorage.getItem('theme')==='light'){document.documentElement.setAttribute('data-theme','light');}}catch(e){}})();</script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Olatano G'izuwa - Salle de Réception</title>
+    <meta name="description" content="Vitrine web d'Olatano G'izuwa, salle de réception haut de gamme à Libreville : galerie, formules et réservation.">
+    <meta name="theme-color" content="#111111">
+    <link rel="icon" type="image/png" href="../../assets/Moi.jpg">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { 'sans': ['Space Grotesk', 'sans-serif'] },
+                    colors: {
+                        primary: 'rgb(var(--color-primary-rgb) / <alpha-value>)', secondary: 'rgb(var(--color-secondary-rgb) / <alpha-value>)', background: 'rgb(var(--color-background-rgb) / <alpha-value>)',
+                        accent: 'rgb(var(--color-accent-rgb) / <alpha-value>)', card: 'rgb(var(--color-card-rgb) / <alpha-value>)', tag: 'rgb(var(--color-tag-rgb) / <alpha-value>)', 'accent-orange': 'rgb(var(--color-accent-orange-rgb) / <alpha-value>)',
+                    },
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="../../assets/site.css">
+</head>
+
+<body class="bg-background text-primary font-sans min-h-screen">
+    <nav class="w-full bg-background/80 backdrop-blur border-b border-accent/10 shadow-sm px-4 py-3 flex items-center justify-between">
+        <a href="../../" class="flex items-center gap-2 text-accent-orange hover:text-white font-medium text-base transition-colors">
+            <i class="fas fa-arrow-left"></i>
+            <span>Retour</span>
+        </a>
+        <div class="flex items-center gap-3">
+            <a href="../../#projects" class="text-secondary hover:text-accent-orange transition text-sm hidden sm:inline">Tous les projets</a>
+            <button id="theme-toggle" data-theme-toggle aria-label="Basculer le thème"
+                class="w-9 h-9 flex items-center justify-center rounded-full hover:bg-accent-orange/10 text-base hover-scale">
+                <i class="fas fa-moon"></i>
+            </button>
+        </div>
+    </nav>
+
+    <main class="max-w-4xl mx-auto px-4 py-8">
+        <header class="mb-8 text-center" data-reveal>
+            <div class="tilt rounded-2xl overflow-hidden shadow-lg mb-6 bg-card border border-accent/10">
+                <div class="tilt-inner">
+                    <div class="browser-chrome">
+                        <span class="dot bg-red-500/70"></span><span class="dot bg-yellow-500/70"></span><span class="dot bg-green-500/70"></span>
+                        <span class="bar">olatano-gizuwa</span>
+                    </div>
+                    <div class="relative h-64 sm:h-80">
+                        <div class="absolute inset-0 flex flex-col items-center justify-center gap-4 bg-gradient-to-br from-background via-card to-accent">
+                            <span class="text-7xl text-accent-orange"><i class="fas fa-champagne-glasses"></i></span>
+                            <span class="text-secondary text-sm uppercase tracking-widest">Événementiel • Réservation • Libreville</span>
+                        </div>
+                        <img src="https://s.wordpress.com/mshots/v1/https%3A%2F%2Fpapayawhip-lyrebird-153351.hostingersite.com%2F?w=1200&h=750"
+                            alt="Capture d'écran du site Olatano G'izuwa" loading="lazy"
+                            class="absolute inset-0 w-full h-full object-cover object-top"
+                            onerror="this.remove()">
+                    </div>
+                </div>
+            </div>
+            <h1 class="text-3xl sm:text-4xl font-bold mb-2">OLATANO G'IZUWA</h1>
+            <h2 class="text-2xl sm:text-3xl font-bold text-accent-orange mb-4">SALLE DE RÉCEPTION</h2>
+            <div class="flex flex-wrap gap-3 justify-center mb-6">
+                <span class="badge-live px-3 py-1 bg-tag rounded-full text-xs text-secondary"><span class="dot"></span>En ligne</span>
+                <span class="px-3 py-1 bg-tag rounded-full text-xs text-secondary">PHP</span>
+                <span class="px-3 py-1 bg-tag rounded-full text-xs text-secondary">HTML/CSS</span>
+                <span class="px-3 py-1 bg-tag rounded-full text-xs text-secondary">JavaScript</span>
+            </div>
+            <a href="https://papayawhip-lyrebird-153351.hostingersite.com/" target="_blank" rel="noopener"
+                class="inline-flex items-center gap-2 bg-accent-orange text-white px-5 py-2 rounded-lg font-medium hover:bg-accent-orange/90 transition hover-lift">
+                <i class="fas fa-up-right-from-square"></i>
+                Voir le site
+            </a>
+        </header>
+
+        <div class="grid grid-cols-1 lg:grid-cols-4 gap-8">
+            <aside class="lg:col-span-1 space-y-6" data-reveal>
+                <div class="bg-card/80 rounded-xl p-6 border border-accent/10">
+                    <h3 class="text-lg font-semibold mb-3 text-accent-orange">Rôle</h3>
+                    <p class="text-sm text-secondary">Développement solo du site vitrine, de la galerie et du système
+                        de disponibilité.</p>
+                </div>
+                <div class="bg-card/80 rounded-xl p-6 border border-accent/10">
+                    <h3 class="text-lg font-semibold mb-3 text-accent-orange">Domaine</h3>
+                    <p class="text-sm text-secondary">Location de salle de réception haut de gamme pour mariages,
+                        baptêmes, anniversaires et séminaires à Libreville.</p>
+                </div>
+            </aside>
+
+            <div class="lg:col-span-3 space-y-8">
+                <section class="bg-card/80 rounded-xl p-6 border border-accent/10 card-hover" data-reveal>
+                    <h2 class="text-xl font-bold mb-4 text-accent-orange">Contexte</h2>
+                    <p class="text-secondary">
+                        Olatano G'izuwa est une salle de réception qui souhaitait une vitrine web à la hauteur de son
+                        positionnement haut de gamme : mettre en valeur le lieu, présenter les formules disponibles et
+                        simplifier la prise de contact pour les futurs événements.
+                    </p>
+                </section>
+
+                <section class="bg-card/80 rounded-xl p-6 border border-accent/10 card-hover" data-reveal>
+                    <h2 class="text-xl font-bold mb-4 text-accent-orange">Fonctionnalités Clés</h2>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div class="bg-background p-4 rounded-lg border border-accent/10">
+                            <h3 class="font-semibold mb-2">Galerie photo</h3>
+                            <p class="text-secondary text-sm">Mise en avant des espaces, du mobilier et de la
+                                décoration de la salle.</p>
+                        </div>
+                        <div class="bg-background p-4 rounded-lg border border-accent/10">
+                            <h3 class="font-semibold mb-2">Formules détaillées</h3>
+                            <p class="text-secondary text-sm">Présentation des prestations incluses : mobilier,
+                                équipement traiteur, DJ et personnel.</p>
+                        </div>
+                        <div class="bg-background p-4 rounded-lg border border-accent/10">
+                            <h3 class="font-semibold mb-2">Calendrier de disponibilité</h3>
+                            <p class="text-secondary text-sm">Vérification interactive des dates disponibles pour un
+                                événement.</p>
+                        </div>
+                        <div class="bg-background p-4 rounded-lg border border-accent/10">
+                            <h3 class="font-semibold mb-2">Contact direct</h3>
+                            <p class="text-secondary text-sm">Prise de contact rapide par téléphone, WhatsApp ou via
+                                la localisation du lieu.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="bg-card/80 rounded-xl p-6 border border-accent/10 card-hover" data-reveal>
+                    <h2 class="text-xl font-bold mb-4 text-accent-orange">Approche Technique</h2>
+                    <p class="text-secondary">
+                        Site conçu en HTML/CSS/JavaScript avec une partie PHP pour la gestion des disponibilités et du
+                        contact, en misant sur une esthétique sobre et élégante qui met en avant la photographie du
+                        lieu plutôt que des effets superflus.
+                    </p>
+                </section>
+            </div>
+        </div>
+    </main>
+
+    <footer class="mt-12 py-6 border-t border-accent/10 text-secondary text-sm">
+        <div class="max-w-4xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-4">
+            <p>© 2026 - Tous droits réservés</p>
+            <div class="flex gap-6">
+                <a href="../../#home" class="hover:text-accent-orange transition">Accueil</a>
+                <a href="../../#projects" class="hover:text-accent-orange transition">Projets</a>
+                <a href="../../#experience" class="hover:text-accent-orange transition">Parcours</a>
+                <a href="../../#contact" class="hover:text-accent-orange transition">Contact</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../../assets/site.js"></script>
+</body>
+
+</html>

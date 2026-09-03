@@ -57,21 +57,34 @@ npx serve
 ```
 portfolio/
 │
-├── index.html          # Page principale
-├── style.css          # Styles CSS
-├── script.js          # JavaScript
-├── assets/           # Dossier des ressources
-│   ├── images/      # Images
-│   └── icons/       # Icônes
-│
-└── README.md         # Documentation
+├── index.html              # Page principale
+├── assets/
+│   ├── site.css            # Styles et animations partagés
+│   ├── site.js             # Comportements partagés (nav, 3D, reveal, formulaire...)
+│   ├── Moi.jpg              # Photo de profil
+│   └── cv.pdf               # CV téléchargeable
+├── projects/                # Une page détaillée par projet (URL propre : /projects/<slug>/)
+│   ├── knetworking/
+│   ├── viamyli/
+│   ├── elevage-gabon/
+│   ├── esictech/
+│   ├── deriv-game/
+│   ├── siges/
+│   └── olatano-gizuwa/
+└── README.md
 ```
+
+Chaque page utilise des chemins relatifs, ce qui permet un déploiement identique à la racine
+(`azertymj.github.io`) ou dans un sous-dossier (`azertymj.github.io/portfolio`), sans configuration
+serveur supplémentaire (GitHub Pages ne supporte pas `.htaccess`).
 
 ## ✨ Personnalisation
 
-1. **Couleurs** : Modifiez les variables CSS dans `:root` dans `style.css`
-2. **Contenu** : Mettez à jour les informations dans `index.html`
-3. **Images** : Remplacez les images dans le dossier `assets/images`
+1. **Couleurs** : Modifiez les variables `tailwind.config` dans chaque page (`colors`)
+2. **Styles/animations partagés** : `assets/site.css` et `assets/site.js`
+3. **Contenu** : Mettez à jour les informations dans `index.html`
+4. **Nouveau projet** : Dupliquez un dossier de `projects/`, adaptez le contenu, puis ajoutez une
+   carte dans la section Projets de `index.html`
 
 ## 📝 License
 

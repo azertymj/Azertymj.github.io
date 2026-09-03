@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <script>(function(){try{if(localStorage.getItem('theme')==='light'){document.documentElement.setAttribute('data-theme','light');}}catch(e){}})();</script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EsicTech - Site Web Laravel</title>
+    <meta name="description" content="Site professionnel Laravel 12 / Livewire pour présenter l'entreprise EsicTech, ses services et son blog.">
+    <meta name="theme-color" content="#111111">
+    <link rel="icon" type="image/png" href="../../assets/Moi.jpg">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { 'sans': ['Space Grotesk', 'sans-serif'] },
+                    colors: {
+                        primary: 'rgb(var(--color-primary-rgb) / <alpha-value>)', secondary: 'rgb(var(--color-secondary-rgb) / <alpha-value>)', background: 'rgb(var(--color-background-rgb) / <alpha-value>)',
+                        accent: 'rgb(var(--color-accent-rgb) / <alpha-value>)', card: 'rgb(var(--color-card-rgb) / <alpha-value>)', tag: 'rgb(var(--color-tag-rgb) / <alpha-value>)', 'accent-orange': 'rgb(var(--color-accent-orange-rgb) / <alpha-value>)',
+                    },
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="../../assets/site.css">
+</head>
+
+<body class="bg-background text-primary font-sans min-h-screen">
+    <nav class="w-full bg-background/80 backdrop-blur border-b border-accent/10 shadow-sm px-4 py-3 flex items-center justify-between">
+        <a href="../../" class="flex items-center gap-2 text-accent-orange hover:text-white font-medium text-base transition-colors">
+            <i class="fas fa-arrow-left"></i>
+            <span>Retour</span>
+        </a>
+        <div class="flex items-center gap-3">
+            <a href="../../#projects" class="text-secondary hover:text-accent-orange transition text-sm hidden sm:inline">Tous les projets</a>
+            <button id="theme-toggle" data-theme-toggle aria-label="Basculer le thème"
+                class="w-9 h-9 flex items-center justify-center rounded-full hover:bg-accent-orange/10 text-base hover-scale">
+                <i class="fas fa-moon"></i>
+            </button>
+        </div>
+    </nav>
+
+    <main class="max-w-4xl mx-auto px-4 py-8">
+        <header class="mb-8 text-center" data-reveal>
+            <div class="tilt rounded-2xl overflow-hidden shadow-lg mb-6 bg-card border border-accent/10">
+                <div class="tilt-inner">
+                    <div class="browser-chrome">
+                        <span class="dot bg-red-500/70"></span><span class="dot bg-yellow-500/70"></span><span class="dot bg-green-500/70"></span>
+                        <span class="bar">esictechnology.com</span>
+                    </div>
+                    <div class="relative h-64 sm:h-80">
+                        <div class="absolute inset-0 flex flex-col items-center justify-center gap-4 bg-gradient-to-br from-background via-card to-accent">
+                            <span class="text-7xl text-accent-orange"><i class="fas fa-building"></i></span>
+                            <span class="text-secondary text-sm uppercase tracking-widest">Entreprise • Services • Blog</span>
+                        </div>
+                        <img src="https://s.wordpress.com/mshots/v1/https%3A%2F%2Fesictechnology.com%2F?w=1200&h=750"
+                            alt="Capture d'écran du site EsicTech" loading="lazy"
+                            class="absolute inset-0 w-full h-full object-cover object-top"
+                            onerror="this.remove()">
+                    </div>
+                </div>
+            </div>
+            <h1 class="text-3xl sm:text-4xl font-bold mb-2">ESICTECH</h1>
+            <h2 class="text-2xl sm:text-3xl font-bold text-accent-orange mb-4">SITE WEB PROFESSIONNEL</h2>
+            <div class="flex flex-wrap gap-3 justify-center mb-6">
+                <span class="badge-live px-3 py-1 bg-tag rounded-full text-xs text-secondary"><span class="dot"></span>En ligne</span>
+                <span class="px-3 py-1 bg-tag rounded-full text-xs text-secondary">Laravel 12</span>
+                <span class="px-3 py-1 bg-tag rounded-full text-xs text-secondary">Livewire 3</span>
+                <span class="px-3 py-1 bg-tag rounded-full text-xs text-secondary">Tailwind CSS</span>
+                <span class="px-3 py-1 bg-tag rounded-full text-xs text-secondary">Vite</span>
+            </div>
+            <a href="https://esictechnology.com/" target="_blank" rel="noopener"
+                class="inline-flex items-center gap-2 bg-accent-orange text-white px-5 py-2 rounded-lg font-medium hover:bg-accent-orange/90 transition hover-lift">
+                <i class="fas fa-up-right-from-square"></i>
+                Voir le site
+            </a>
+        </header>
+
+        <div class="grid grid-cols-1 lg:grid-cols-4 gap-8">
+            <aside class="lg:col-span-1 space-y-6" data-reveal>
+                <div class="bg-card/80 rounded-xl p-6 border border-accent/10">
+                    <h3 class="text-lg font-semibold mb-3 text-accent-orange">Rôle</h3>
+                    <p class="text-sm text-secondary">Développement d'un site vitrine moderne avec navigation fluide et composants réutilisables.</p>
+                </div>
+                <div class="bg-card/80 rounded-xl p-6 border border-accent/10">
+                    <h3 class="text-lg font-semibold mb-3 text-accent-orange">Pages</h3>
+                    <p class="text-sm text-secondary">Accueil, À propos, Services, Projets, Blog et Contact.</p>
+                </div>
+            </aside>
+
+            <div class="lg:col-span-3 space-y-8">
+                <section class="bg-card/80 rounded-xl p-6 border border-accent/10 card-hover" data-reveal>
+                    <h2 class="text-xl font-bold mb-4 text-accent-orange">Contexte</h2>
+                    <p class="text-secondary">
+                        EsicTech est un site professionnel conçu pour présenter l'entreprise, ses services, ses projets
+                        et ses contenus de blog. L'objectif était d'obtenir une interface moderne, responsive et simple à
+                        maintenir.
+                    </p>
+                </section>
+
+                <section class="bg-card/80 rounded-xl p-6 border border-accent/10 card-hover" data-reveal>
+                    <h2 class="text-xl font-bold mb-4 text-accent-orange">Fonctionnalités</h2>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div class="bg-background p-4 rounded-lg border border-accent/10">
+                            <h3 class="font-semibold mb-2">Navigation SPA</h3>
+                            <p class="text-secondary text-sm">Navigation fluide avec Livewire et wire:navigate, sans rechargement complet.</p>
+                        </div>
+                        <div class="bg-background p-4 rounded-lg border border-accent/10">
+                            <h3 class="font-semibold mb-2">Composants</h3>
+                            <p class="text-secondary text-sm">Header et footer réutilisables, structure Blade claire et pages organisées.</p>
+                        </div>
+                        <div class="bg-background p-4 rounded-lg border border-accent/10">
+                            <h3 class="font-semibold mb-2">Design responsive</h3>
+                            <p class="text-secondary text-sm">Interface moderne avec Tailwind CSS et support du mode sombre.</p>
+                        </div>
+                        <div class="bg-background p-4 rounded-lg border border-accent/10">
+                            <h3 class="font-semibold mb-2">Contact</h3>
+                            <p class="text-secondary text-sm">Page contact intégrée pour faciliter la prise de relation avec l'entreprise.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="bg-card/80 rounded-xl p-6 border border-accent/10 card-hover" data-reveal>
+                    <h2 class="text-xl font-bold mb-4 text-accent-orange">Approche Technique</h2>
+                    <p class="text-secondary">
+                        Le projet s'appuie sur Laravel 12, Livewire 3, Tailwind CSS et Vite. Les routes publiques sont
+                        organisées autour des pages principales, avec des vues Blade séparées pour garder une base propre
+                        et évolutive.
+                    </p>
+                </section>
+            </div>
+        </div>
+    </main>
+
+    <footer class="mt-12 py-6 border-t border-accent/10 text-secondary text-sm">
+        <div class="max-w-4xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-4">
+            <p>© 2026 - Tous droits réservés</p>
+            <div class="flex gap-6">
+                <a href="../../#home" class="hover:text-accent-orange transition">Accueil</a>
+                <a href="../../#projects" class="hover:text-accent-orange transition">Projets</a>
+                <a href="../../#experience" class="hover:text-accent-orange transition">Parcours</a>
+                <a href="../../#contact" class="hover:text-accent-orange transition">Contact</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../../assets/site.js"></script>
+</body>
+
+</html>

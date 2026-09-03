@@ -1,24 +1,2 @@
 User-agent: *
 Allow: /
-Sitemap: https://votredomaine.com/sitemap.xml
-
-# Désactiver l'indexation des dossiers spécifiques
-Disallow: /admin/
-Disallow: /includes/
-Disallow: /assets/
-
-# Autoriser les moteurs de recherche à explorer les images
-Allow: /*.png$
-Allow: /*.jpg$
-Allow: /*.jpeg$
-Allow: /*.gif$
-Allow: /*.svg$
-
-# Désactiver l'exploration des fichiers spécifiques
-Disallow: /search/
-Disallow: /*.pdf$
-Disallow: /*.doc$
-Disallow: /*.docx$
-
-# Paramètres de délai entre les requêtes (optionnel)
-Crawl-delay: 10

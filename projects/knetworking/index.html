@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <script>(function(){try{if(localStorage.getItem('theme')==='light'){document.documentElement.setAttribute('data-theme','light');}}catch(e){}})();</script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KNetworking - Services à Domicile</title>
+    <meta name="description" content="Application mobile Flutter de mise en relation entre clients et prestataires de services à domicile.">
+    <meta name="theme-color" content="#111111">
+    <link rel="icon" type="image/png" href="../../assets/Moi.jpg">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { 'sans': ['Space Grotesk', 'sans-serif'] },
+                    colors: {
+                        primary: 'rgb(var(--color-primary-rgb) / <alpha-value>)', secondary: 'rgb(var(--color-secondary-rgb) / <alpha-value>)', background: 'rgb(var(--color-background-rgb) / <alpha-value>)',
+                        accent: 'rgb(var(--color-accent-rgb) / <alpha-value>)', card: 'rgb(var(--color-card-rgb) / <alpha-value>)', tag: 'rgb(var(--color-tag-rgb) / <alpha-value>)', 'accent-orange': 'rgb(var(--color-accent-orange-rgb) / <alpha-value>)',
+                    },
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="../../assets/site.css">
+</head>
+
+<body class="bg-background text-primary font-sans min-h-screen">
+    <nav class="w-full bg-background/80 backdrop-blur border-b border-accent/10 shadow-sm px-4 py-3 flex items-center justify-between">
+        <a href="../../" class="flex items-center gap-2 text-accent-orange hover:text-white font-medium text-base transition-colors">
+            <i class="fas fa-arrow-left"></i>
+            <span>Retour</span>
+        </a>
+        <div class="flex items-center gap-3">
+            <a href="../../#projects" class="text-secondary hover:text-accent-orange transition text-sm hidden sm:inline">Tous les projets</a>
+            <button id="theme-toggle" data-theme-toggle aria-label="Basculer le thème"
+                class="w-9 h-9 flex items-center justify-center rounded-full hover:bg-accent-orange/10 text-base hover-scale">
+                <i class="fas fa-moon"></i>
+            </button>
+        </div>
+    </nav>
+
+    <main class="max-w-4xl mx-auto px-4 py-8">
+        <header class="mb-8 text-center" data-reveal>
+            <div class="tilt rounded-2xl overflow-hidden shadow-lg mb-6 bg-card border border-accent/10">
+                <div class="tilt-inner">
+                    <div class="browser-chrome">
+                        <span class="dot bg-red-500/70"></span><span class="dot bg-yellow-500/70"></span><span class="dot bg-green-500/70"></span>
+                        <span class="bar">app · KNetworking</span>
+                    </div>
+                    <div class="h-64 sm:h-80 flex flex-col items-center justify-center gap-4 bg-gradient-to-br from-background via-card to-accent">
+                        <span class="text-7xl text-accent-orange"><i class="fas fa-mobile-alt"></i></span>
+                        <span class="text-secondary text-sm uppercase tracking-widest">Flutter • Mobile • API REST</span>
+                    </div>
+                </div>
+            </div>
+            <h1 class="text-3xl sm:text-4xl font-bold mb-2">KNETWORKING</h1>
+            <h2 class="text-2xl sm:text-3xl font-bold text-accent-orange mb-4">SERVICES À DOMICILE</h2>
+            <div class="flex flex-wrap gap-3 justify-center mb-2">
+                <span class="px-3 py-1 bg-tag rounded-full text-xs text-secondary">Flutter</span>
+                <span class="px-3 py-1 bg-tag rounded-full text-xs text-secondary">Dart</span>
+                <span class="px-3 py-1 bg-tag rounded-full text-xs text-secondary">API REST</span>
+                <span class="px-3 py-1 bg-tag rounded-full text-xs text-secondary">Mobile</span>
+            </div>
+        </header>
+
+        <div class="grid grid-cols-1 lg:grid-cols-4 gap-8">
+            <aside class="lg:col-span-1 space-y-6" data-reveal>
+                <div class="bg-card/80 rounded-xl p-6 border border-accent/10">
+                    <h3 class="text-lg font-semibold mb-3 text-accent-orange">Rôle</h3>
+                    <p class="text-sm text-secondary">Conception et développement des fonctionnalités clés de
+                        l'application mobile, côté client comme côté prestataire.</p>
+                </div>
+                <div class="bg-card/80 rounded-xl p-6 border border-accent/10">
+                    <h3 class="text-lg font-semibold mb-3 text-accent-orange">Domaine</h3>
+                    <p class="text-sm text-secondary">Mise en relation entre particuliers et prestataires de services à
+                        domicile (ménage, réparation, entretien, etc.).</p>
+                </div>
+            </aside>
+
+            <div class="lg:col-span-3 space-y-8">
+                <section class="bg-card/80 rounded-xl p-6 border border-accent/10 card-hover" data-reveal>
+                    <h2 class="text-xl font-bold mb-4 text-accent-orange">Contexte</h2>
+                    <p class="text-secondary">
+                        KNetworking répond à un besoin simple mais courant : trouver rapidement un prestataire fiable
+                        pour un service à domicile. L'application permet à un client de décrire son besoin, de
+                        parcourir les prestataires disponibles et de lancer une demande, pendant que le prestataire
+                        gère ses propositions depuis un espace dédié.
+                    </p>
+                </section>
+
+                <section class="bg-card/80 rounded-xl p-6 border border-accent/10 card-hover" data-reveal>
+                    <h2 class="text-xl font-bold mb-4 text-accent-orange">Fonctionnalités Clés</h2>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div class="bg-background p-4 rounded-lg border border-accent/10">
+                            <h3 class="font-semibold mb-2">Double espace</h3>
+                            <p class="text-secondary text-sm">Parcours distincts pour les clients et pour les
+                                prestataires, avec des écrans adaptés à chaque usage.</p>
+                        </div>
+                        <div class="bg-background p-4 rounded-lg border border-accent/10">
+                            <h3 class="font-semibold mb-2">Recherche de services</h3>
+                            <p class="text-secondary text-sm">Catalogue de prestations filtrable pour trouver
+                                rapidement le bon prestataire.</p>
+                        </div>
+                        <div class="bg-background p-4 rounded-lg border border-accent/10">
+                            <h3 class="font-semibold mb-2">Demandes et suivi</h3>
+                            <p class="text-secondary text-sm">Création de demandes de service et suivi de leur statut
+                                depuis l'application.</p>
+                        </div>
+                        <div class="bg-background p-4 rounded-lg border border-accent/10">
+                            <h3 class="font-semibold mb-2">Consommation d'API</h3>
+                            <p class="text-secondary text-sm">Intégration avec une API REST pour la gestion des
+                                comptes, services et demandes.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="bg-card/80 rounded-xl p-6 border border-accent/10 card-hover" data-reveal>
+                    <h2 class="text-xl font-bold mb-4 text-accent-orange">Approche Technique</h2>
+                    <p class="text-secondary">
+                        L'application est développée avec Flutter pour une base de code unique sur Android et iOS.
+                        L'accent a été mis sur des composants réutilisables et une navigation claire entre les
+                        différents parcours utilisateurs.
+                    </p>
+                </section>
+            </div>
+        </div>
+    </main>
+
+    <footer class="mt-12 py-6 border-t border-accent/10 text-secondary text-sm">
+        <div class="max-w-4xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-4">
+            <p>© 2026 - Tous droits réservés</p>
+            <div class="flex gap-6">
+                <a href="../../#home" class="hover:text-accent-orange transition">Accueil</a>
+                <a href="../../#projects" class="hover:text-accent-orange transition">Projets</a>
+                <a href="../../#experience" class="hover:text-accent-orange transition">Parcours</a>
+                <a href="../../#contact" class="hover:text-accent-orange transition">Contact</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../../assets/site.js"></script>
+</body>
+
+</html>
